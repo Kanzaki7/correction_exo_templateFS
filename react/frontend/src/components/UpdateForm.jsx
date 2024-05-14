@@ -11,29 +11,23 @@ export default function UpdateForm() {
   
   const [products, setProducts] = useState([])
   
-  // useEffect(()=>{
-  //   axios.get('http://127.0.0.1:8000/api/products/'+id)
-  //   .then(res => setProducts(res.data.data))
-  //   .catch(error => console.log(error) )
-  // }, [])
+  useEffect(()=>{
+    axios.get('http://127.0.0.1:8000/api/products/'+id)
+    .then(res => setProducts(res.data.data))
+    .catch(error => console.log(error) )
+  }, [])
 
     let  { id }  = useParams()
     let navigate = useNavigate();
 
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/products/'+id)
-        .then(res => setProducts(res.data.data))
-        .catch(error => console.log(error) )
-
-      }, [])
-      const [formData, setFormData] = useState({
-        nom: '',
-        categorie: '',
-        stock: products.stock,
-        prix: products.prix,
-        star: 2,
-        image: null,
-      });
+    const [formData, setFormData] = useState({
+      nom: '',
+      categorie: '',
+      stock: null,
+      prix: null,
+      star: null,
+      image: null,
+    });
       
 console.log(formData);
 
@@ -85,15 +79,15 @@ return (
               </div>
               <div className="divInput">
                 <label htmlFor="stock">Stock :</label>
-                <input type="number" name="stock" value={formData.stock}  onChange={handleChange} required />
+                <input type="number" name="stock" value={formData.stock} placeholder={products.stock} onChange={handleChange} required />
               </div>
               <div className="divInput">
                 <label htmlFor="prix">Prix :</label>
-                <input type="number" name="prix" value={formData.prix}  onChange={handleChange} required />
+                <input type="number" name="prix" value={formData.prix} placeholder={products.prix} onChange={handleChange} required />
               </div>
               <div className="divInput">
                 <label htmlFor="star">Note :</label>
-                <input type="number" name="star" value={formData.star} onChange={handleChange} required />
+                <input type="number" name="star" value={formData.star} placeholder={products.star} onChange={handleChange} required />
               </div>
               <div className="divInputImg">
                 <label htmlFor="image">Image :</label>

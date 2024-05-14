@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
 export default function CreateForm() { 
+  
 
   let navigate = useNavigate();
 
@@ -34,7 +35,7 @@ export default function CreateForm() {
       }
     }
 
-    
+
     
     const handleChange = (e) => {
       const {name, value, type, files} = e.target
